@@ -1,7 +1,8 @@
-FROM openjdk:8
+FROM google/cloud-sdk:alpine
 
-ADD https://dl.google.com/devsite/firestore/cloud-firestore-emulator.jar /cloud-firestore-emulator.jar
+RUN apk add --update --no-cache openjdk8-jre &&\
+    gcloud components install cloud-firestore-emulator beta --quiet
 
 EXPOSE 8080
 
-ENTRYPOINT java -jar /cloud-firestore-emulator.jar
+ENTRYPOINT gcloud beta emulators firestore start --host-port=0.0.0.0:8080
