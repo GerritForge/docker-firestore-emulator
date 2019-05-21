@@ -5,4 +5,6 @@ RUN apk add --update --no-cache openjdk8-jre &&\
 
 EXPOSE 8080
 
-ENTRYPOINT gcloud beta emulators firestore start --host-port=0.0.0.0:8080
+ENV PROJECT=firestore-project
+
+ENTRYPOINT gcloud config set project ${PROJECT} && gcloud beta emulators firestore start --host-port=0.0.0.0:8080
