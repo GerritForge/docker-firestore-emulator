@@ -7,7 +7,7 @@ ENV PROJECT=firestore-project
 
 EXPOSE 8080
 
-HEALTHCHECK CMD curl -f http://127.0.0.1:8080
+HEALTHCHECK --interval=1s --start-period=2s CMD curl -f http://127.0.0.1:8080
 
 ADD firebase.rules /
 
